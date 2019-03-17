@@ -8,26 +8,21 @@ excerpt: "this is my test post"
 mathjax: "true"
 published: true
 ---
-# Post Post Post Heading
-
-## These are subheadings
-
-This is my second post! YAY
 # False Position Method
 ## INTRODUCTION
 ---------------------------------------------------
 A recursive algorithm that does the following:
-  1) start with point slope formula:  $$y-y(n) = m (x - x(n))$$
-  2) solve for fixed points by setting: $$y = 0, x = p(n)$$
-      $$-y(n) = m(p(n) - x(n))$$
-      $$p(n) = x(n) - y(n) * (1/ m)$$
-  3) Here, we need an initial guess for the left and right bounds: a,b
-      $$p(n) = b(n) - f(b(n)) * (b(n)-a(n)) / (f(b(n)) - f(b(n)))$$
-  4) We then update the formula using a similar procedure as in bisection
+  1. start with point slope formula:  $y-y(n) = m (x - x(n))$
+  2. solve for fixed points by setting: $y = 0, x = p(n)$
+      $-y(n) = m(p(n) - x(n))$
+      $p(n) = x(n) - y(n) * (1/ m)$
+  3. Here, we need an initial guess for the left and right bounds: a,b
+      $p(n) = b(n) - f(b(n)) * (b(n)-a(n)) / (f(b(n)) - f(b(n)))$
+  4. We then update the formula using a similar procedure as in bisection
   method. We choose the point that does not have the same sign as p(n) to
   stay the same, and the boundary point that shares the same sign as p(n)
   gets set as p(n).
-  5) Eventually either one of the endpoints will become fixed, and only
+  5. Eventually either one of the endpoints will become fixed, and only
   one side will constantly update.
 
 
