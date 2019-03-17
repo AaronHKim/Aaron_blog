@@ -10,7 +10,7 @@ header:
 
 ## These are subheadings
 
-[bijection method]({{ site.baseurl }}{% post_url 2018-01-29-bisection %})
+[bisection method]({{ site.baseurl }}{% post_url _2018-01-29-bisection %})
 [false position]({{ site.baseurl }}{% post_url 2018-01-30-false-position %})
 body text!
 
