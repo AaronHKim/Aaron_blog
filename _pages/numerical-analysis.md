@@ -10,8 +10,9 @@ header:
 
 ## These are subheadings
 
-[bisection method]({{ site.baseurl }}{% post_url _2018-01-29-bisection %})
-[false position]({{ site.baseurl }}{% post_url 2018-01-30-false-position %})
+list of links:
+* [bisection method]({{ site.baseurl }}{% post_url _2018-01-29-bisection %})
+* [false position]({{ site.baseurl }}{% post_url 2018-01-30-false-position %})
 body text!
 
 Here's a [link to the google page](https://google.com)
