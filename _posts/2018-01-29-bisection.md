@@ -1,5 +1,5 @@
 ---
-title: "Post 2"
+title: "Bisection Method"
 date: 2018-02-29
 tags: [test, post]
 header:
@@ -8,11 +8,6 @@ excerpt: "this is my test post"
 mathjax: "true"
 published: true
 ---
-# Post Post Post Heading
-
-## These are subheadings
-
-This is my second post! YAY
 # Bisection Method
 #### INTRODUCTION
 A recursive root finding algorithm that takes in two values and finds the
