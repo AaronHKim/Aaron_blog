@@ -9,24 +9,20 @@ mathjax: "true"
 published: true
 ---
 # False Position Method
-## INTRODUCTION
----------------------------------------------------
-A recursive algorithm that does the following:
-1. start with point slope formula:  $$y-y(n)=m(x-x(n))$$
-2. solve for fixed points by setting: $$y=0$$ , $$x=p(n)$
-&nbsp  &nbsp  &nbsp  $$-y(n)=m(p(n)-x(n))$$
-&nbsp  &nbsp  &nbsp  $$p(n)=x(n)-y(n)* (1/m)$$
+### INTRODUCTION
+We would like a recursive algorithm that does the following:
+
+1. start with point slope formula:  y-y(n)=m(x-x(n))
+2. solve for fixed points by setting: y=0 , x=p(n)
+&nbsp  &nbsp  &nbsp  -y(n)=m(p(n)-x(n))
+&nbsp  &nbsp  &nbsp  p(n)=x(n)-y(n)* (1/m)
 3. Here, we need an initial guess for the left and right bounds: a,b
-      $p(n) = b(n) - f(b(n)) * (b(n)-a(n)) / (f(b(n)) - f(b(n)))$
-4. We then update the formula using a similar procedure as in bisection
-  method. We choose the point that does not have the same sign as p(n) to
-  stay the same, and the boundary point that shares the same sign as p(n)
-  gets set as p(n).
-5. Eventually either one of the endpoints will become fixed, and only
-  one side will constantly update.
+&nbsp  &nbsp  &nbsp  p(n) = b(n) - f(b(n)) * (b(n)-a(n)) / (f(b(n)) - f(b(n)))
+4. We then update the formula using a similar procedure as in bisection method. We choose the point that does not have the same sign as p(n) to stay the same, and the boundary point that shares the same sign as p(n) gets set as p(n).
+5. Eventually either one of the endpoints will become fixed, and only one side will constantly update.
 
 
-#### INITIAL PARAMETERS
+### INITIAL PARAMETERS
 * a - the left bound
 * b - the right bound
 * error - the error tolerance
@@ -38,7 +34,7 @@ b(1,1)=3;
 error = 1*10.^(-6);
 f = @(x) x.*x - 5;
 ```
-#### Applying the function
+### Applying the function
 setting vectors holding the left, right, and approximation for each
 iteration. We are also taking a vector holding the error at each
 iteration and a vector holding the number of iterations
