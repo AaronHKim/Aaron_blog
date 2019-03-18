@@ -15,7 +15,7 @@ list of links:
 asdff
 * [false position]({{ site.baseurl }}{% post_url 2018-01-30-false-position %})
 body text!
-
+* [fixed point iteration]({{ site.baseurl }}{% post_url 2018-02-01-fixed-point-iteration %})
 Here's a [link to the google page](https://google.com)
 
 bulleted list use mathematical operatsors:
