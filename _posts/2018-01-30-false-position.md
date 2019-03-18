@@ -48,73 +48,96 @@ iteration and a vector holding the number of iterations
 ```matlab
 [p_n,i_n] = false_position(a,b,f,error);
 ```
-#### PLOT PARAMETERS
+### PLOT PARAMETERS
+plotting the estimated fixed point value vs the iteration
 ```matlab
-% plotting the middle approximation vs the iteration
 figure(1)
-% plotting the left, right, and middle approximation on the x axis over the
-% function itself. Blue indicates an initial guess, the closer to red the
-% greater the iteration number
-plot(i,approx)
-figure(2)
-scatter(approx,zeros(size(approx,1),1),25,linspace(1,10,size(approx,1)),'filled')
-hold on
-scatter(left,zeros(size(left,1),1),100,linspace(1,10,size(left,1)),'d')
-scatter(right,zeros(size(right,1),1),100,linspace(1,10,size(right,1)))
-plot(points,f(points))
-hold off
+plot(i_n,p_n)
+title('approixmated fixed point vs iteration')
+xlabel('iteration')
+ylabel('approximated value')
+legend('p(n)')
 ```
 <img src="{{ site.baseurl }}/images/numerical_analysis/linear_methods/false_position/plot.png">
 
-#### BISECTION METHOD FUNCTION
+### False Position Approximation Method
 This function has 4 inputs:
-1. The left bound
-2. The right bound
-3. The function
-4. The error tolerance
+####INPUTS (4):
+1. The initial left bound
+2. The initial right bound
+3. The function we are finding the fixed point of
+4. The error tolerance we are willing to accept
 
-#### This function has 5 outputs:
-1. The left bound for each iteration, [n+1 x 1]
-2. The right bound for each iteration, [n+1 x 1]
-3. The middle approximated value for each iteration, [n x 1]
-4. The error from value at each iteration, [n x 1]
-5. A vector holding the iteration number, [n x 1]
+####OUTPUTS (2):
+1. The error estimate at each iteration
+2. The iteration number
+
+####COMMENTS:
+1. Asymptotic error constant (lambda) is calculated but not output.
+2. The error is the approximate error, which can also be added as an
+   output
 
 ```matlab
-function [left_bound,right_bound,approximation,error,subyindex] = bisection(a,b,f,epsilon)
-    %INITIALIZING VARIABLES
-    left_bound = a;
-    right_bound = b;
-    approximation = [];
+function [pn,i] = false_position(a,b,f,error)
+    % printing the initial conditions
+    fprintf('the initial left bound is: %d\n',a(1))
+    fprintf('the initial right bound is: %d\n',b(1))
+    fprintf('the desired error is: %d\n\n',error)
+
+    % makes sure loop criterion is met
+    stop= error+error;
+    % initializing variables
+    lambda = 0;
     i=1;
-    subyindex = [];
-    % Intial error set at twice epsilon to make sure the loop runs
-    % This is overwritten in the first while loop.
-    error = epsilon + epsilon;
 
+    % Iterative stopping criterion (approximated error) is greater than the
+    % desired actual error. This is done so that if desired the stopping
+    % criterion can be obtained from the function
+    while (stop(i,1) > error)
+      fprintf('current step: %d\n',i)
+      % algorithm for recursively approximating fixed points
+      pn(i,1)=b(i,1)-f(b(i,1))*((b(i,1)-a(i,1))/(f(b(i,1))-f(a(i,1))));
+      fprintf('f(a(%d)) = %d, f(b(%d)) = %d\n',i,a(i,1),i,b(i,1));
+      fprintf('p(%d) = %.9d\n',i,pn(i));
 
-    while(error>epsilon)
-        % finding the midpoint between the left and right values
-        approximation(i,1)= (left_bound(i,1) +right_bound(i,1))/2;
-        fprintf('an=%d,bn=%d,pn=%d,f(an)=%d,f(bn)=%d,f(pn)=%d\n',left_bound(i,1),right_bound(i,1),approximation(i,1),sign(f(left_bound(i,1))),sign(f(right_bound(i,1))),sign(f(approximation(i,1))))
+      % choosing criterion for bounds.
+      if sign(f(a(i,1))) == sign(f(pn(i,1))) % choose left
+        a(i+1,1)=pn(i,1);
+        b(i+1,1)=b(i,1);
+      else % choose right
+        a(i+1,1)=a(i,1);
+        b(i+1,1)=pn(i,1);
+      end
 
-        % makes sure the midpoint and next iterations always have opposite
-        % signs
-        if sign(f(left_bound(i,1)))~=sign(f(approximation(i,1)))
-            left_bound(i+1,1)=left_bound(i,1);
-            right_bound(i+1,1)=approximation(i,1);
-        else
-            right_bound(i+1,1)=right_bound(i,1);
-            left_bound(i+1,1)=approximation(i,1);
-        end
+      fprintf('a(%d)=%d b(%d)=%d\n',i+1,a(i+1,1),i+1,b(i+1,1))
 
-        % calculates the residual of the error
-        error(i,1) = abs(f(approximation(i,1)));
-        % creates an index of the current iteration
-        subyindex = [subyindex; i];
-        i=i+1;
+      % Prevents loop from stopping before the second iteration
+      if i<3
+          stop(i+1,1) = error+error;
+          fprintf('\n')
+      end
+
+      % Approximated error can only be calculated from n>2
+      if i>2
+        % Lambda is the asymptotic error constant
+        lambda(i,1) = (pn(i,1)-pn(i-1,1))/(pn(i-1,1)-pn(i-2,1));
+        fprintf('lambda is: %d\n',lambda(i,1))
+
+        % Stop is the approximated error criterion
+        stop(i+1,1) = abs((lambda(i,1))/(lambda(i,1)-1))*abs(pn(i,1)-pn(i-1,1));
+        fprintf('stopping error approximation: %d\n\n',stop(i+1,1))
+
+      end
+
+      i=i+1;
     end
-    % prints the approximated root to 4 decimal points.
-    fprintf('the root is approximately %.4f\n', approximation(i-1,1));
+
+    % formatting the vectors to look appropriate if called
+    stop(3) = [];
+    stop(1:2) = 0;
+    a(i)=[];
+    b(i)=[];
+    i = [1:i-1]';
+
 end
 ```
