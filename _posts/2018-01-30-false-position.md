@@ -64,9 +64,7 @@ scatter(right,zeros(size(right,1),1),100,linspace(1,10,size(right,1)))
 plot(points,f(points))
 hold off
 ```
-<img src="{{ site.baseurl }}/images/numerical_analysis/linear_methods/bisection_method/approximation_vs_iteration.png">
-
-<img src="{{ site.baseurl }}/images/numerical_analysis/linear_methods/bisection_method/example_of_bijection.png">
+<img src="{{ site.baseurl }}/images/numerical_analysis/linear_methods/false_position/plot.png">
 
 #### BISECTION METHOD FUNCTION
 This function has 4 inputs:
