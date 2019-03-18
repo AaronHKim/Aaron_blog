@@ -62,17 +62,18 @@ legend('p(n)')
 
 ### False Position Approximation Method
 This function has 4 inputs:
-####INPUTS (4):
+
+#### INPUTS (4):
 1. The initial left bound
 2. The initial right bound
 3. The function we are finding the fixed point of
 4. The error tolerance we are willing to accept
 
-####OUTPUTS (2):
+#### OUTPUTS (2):
 1. The error estimate at each iteration
 2. The iteration number
 
-####COMMENTS:
+#### COMMENTS:
 1. Asymptotic error constant (lambda) is calculated but not output.
 2. The error is the approximate error, which can also be added as an
    output
