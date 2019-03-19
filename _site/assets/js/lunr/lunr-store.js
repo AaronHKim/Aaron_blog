@@ -4,6 +4,11 @@ var store = [{
         "tags": ["test","post"],
         "url": "http://localhost:4000/false-position/",
         "teaser":null},{
+        "title": "Fixed Point Iteration",
+        "excerpt":"False Position Method INTRODUCTION This method solves for a fixed point meaning a point on a function at which the following is true: $f(x) = x$. If we set a function equal to this value, say call it g(x), then we say $g(x) = f(x) - x$, and that $g(x)...","categories": [],
+        "tags": ["test","post"],
+        "url": "http://localhost:4000/fixed-point-iteration/",
+        "teaser":null},{
         "title": "Bisection Method",
         "excerpt":"Bisection Method INTRODUCTION A recursive root finding algorithm that takes in two values and finds the a midpoint between them. The next iterate always chooses two values with different signs. If the root exists and sign of f(left) and f(right) are different (one is a negative number and the other...","categories": [],
         "tags": ["test","post"],
