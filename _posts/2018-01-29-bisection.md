@@ -59,7 +59,7 @@ hold off
 <img src="{{ site.baseurl }}/images/numerical_analysis/linear_methods/bisection_method/example_of_bijection.png">
 
 #### BISECTION METHOD FUNCTION
-This function has 4 inputs:
+#### This function has 4 inputs:
 1. The left bound
 2. The right bound
 3. The function
