@@ -12,3 +12,7 @@ example/_site
 Gemfile.lock
 node_modules
 npm-debug.log*
+vendor/bundle/gems/ffi-1.10.0/ext/ffi_c/libffi-x86_64-linux-gnu/.libs/libffi.la
+vendor/bundle/gems/ffi-1.10.0/ext/ffi_c/libffi-x86_64-linux-gnu/.libs/libffi.so.7
+vendor/bundle/gems/ffi-1.10.0/ext/ffi_c/libffi-x86_64-linux-gnu/.libs/libffi_convenience.la
+vendor/bundle/gems/ffi-1.10.0/ext/ffi_c/libffi-x86_64-linux-gnu/include/ffitarget.h
