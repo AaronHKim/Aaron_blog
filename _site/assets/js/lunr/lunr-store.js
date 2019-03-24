@@ -9,6 +9,11 @@ var store = [{
         "tags": ["test","post"],
         "url": "http://localhost:4000/fixed-point-iteration/",
         "teaser":null},{
+        "title": "Multivariable Newton's Method",
+        "excerpt":"Newton’s Method Nonlinear Method for scalar values This is a program intended to solve for critical points of multivariable functions by applying Newton’s Method. Introduction Linear Newton’s Method In a previous program we showed how to solve Newton’s method for a single variable by doing the following: Have a continous...","categories": [],
+        "tags": ["test","post"],
+        "url": "http://localhost:4000/multivariable-newtons-method/",
+        "teaser":null},{
         "title": "Bisection Method",
         "excerpt":"Bisection Method INTRODUCTION A recursive root finding algorithm that takes in two values and finds the a midpoint between them. The next iterate always chooses two values with different signs. If the root exists and sign of f(left) and f(right) are different (one is a negative number and the other...","categories": [],
         "tags": ["test","post"],
