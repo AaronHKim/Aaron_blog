@@ -13,11 +13,13 @@ toc_sticky: true
 ---
 
 ## Introduction
+
 ##### Linear Newton's Method
+
 In a previous program we showed how to solve Newton's method for a single
 variable by doing the following:
 
-1. Have a continous function for which there exists a minima, call it
+1. Have a continuous function for which there exists a minima, call it
 $f(x)$
 2. If we find the first derivative of the function, we find the critical
 points of that function which can be a local minimum. i.e. $f'(x)=0$
@@ -34,6 +36,7 @@ g'(x^{(k)})(x^{(k+1)}-x^{(k)}) $$.
 $$ x^{(k+1)} = x^{(k)}-\frac{g(x^{(k)})}{g'(x^{(k)})} $$
 
 ##### Multivariable Newton's Method
+
 Here we would like to solve for the multivariable case, and we use a similar
 logic:
 
