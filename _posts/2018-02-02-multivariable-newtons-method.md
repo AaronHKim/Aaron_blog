@@ -1,16 +1,15 @@
 ---
-title: "Multivariable Newton's Method"
+title: "Newton's Method Nonlinear Method for Scalars"
 date: 2018-02-02
 tags: [post]
 header:
   #image:
-excerpt: "this is my test post"
+excerpt: "This is a program intended to solve for critical points of multivariable
+functions by applying Newton's Method."
 mathjax: "true"
 published: true
 ---
-# Newton's Method Nonlinear Method for scalar values
-This is a program intended to solve for critical points of multivariable
-functions by applying Newton's Method.
+
 ## Introduction
 ##### Linear Newton's Method
 In a previous program we showed how to solve Newton's method for a single

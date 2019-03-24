@@ -8,7 +8,7 @@ excerpt: "this is my test post"
 mathjax: "true"
 published: true
 ---
-# False Position Method
+
 ### INTRODUCTION
 We would like a recursive algorithm that does the following:
 1. start with point slope formula: $$y-y(n)=m(x-x(n))$$

@@ -8,7 +8,6 @@ excerpt: "this is my test post"
 mathjax: "true"
 published: true
 ---
-# Bisection Method
 #### INTRODUCTION
 A recursive root finding algorithm that takes in two values and finds the
 a midpoint between them. The next iterate always chooses two values with

@@ -8,7 +8,7 @@ excerpt: "this is my test post"
 mathjax: "true"
 published: true
 ---
-# False Position Method
+
 ### INTRODUCTION
 This method solves for a fixed point meaning a point on a function at
 which the following is true: $f(x) = x$. If we set a function equal to this
