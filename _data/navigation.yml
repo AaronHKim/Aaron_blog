@@ -8,7 +8,7 @@ main:
   #   url: /machine-learning/
   #- title: "index"
   #  url: /index/
-  - title: "numerical-analysis"
+  - title: "numerical analysis"
     url: /numerical-analysis/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
