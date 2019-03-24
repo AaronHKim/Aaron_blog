@@ -55,4 +55,4 @@ Here's some inline equations `x+y`
   {% for post in posts %}
     {% include archive-single.html %}
   {% endfor %}
-{% endfor %}  -->
+{% endfor %} 
