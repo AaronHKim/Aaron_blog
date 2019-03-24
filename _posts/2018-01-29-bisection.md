@@ -1,7 +1,7 @@
 ---
 title: "Bisection Method"
 date: 2018-02-29
-tags: [test, post]
+tags: [post]
 header:
   #image:
 excerpt: "this is my test post"
