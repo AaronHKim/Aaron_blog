@@ -7,6 +7,8 @@ header:
 excerpt: "this is my test post"
 mathjax: "true"
 published: true
+toc: true
+toc_sticky: true
 ---
 #### INTRODUCTION
 A recursive root finding algorithm that takes in two values and finds the

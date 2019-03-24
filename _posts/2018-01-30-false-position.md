@@ -7,6 +7,8 @@ header:
 excerpt: "this is my test post"
 mathjax: "true"
 published: true
+toc: true
+toc_sticky: true
 ---
 
 ### INTRODUCTION

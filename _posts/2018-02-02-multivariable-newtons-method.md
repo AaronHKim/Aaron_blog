@@ -8,6 +8,8 @@ excerpt: "This is a program intended to solve for critical points of multivariab
 functions by applying Newton's Method."
 mathjax: "true"
 published: true
+toc: true
+toc_sticky: true
 ---
 
 ## Introduction
