@@ -9,6 +9,17 @@ mathjax: "true"
 published: true
 toc: true
 toc_sticky: true
+
+
+sidebar:
+  - title: "Title"
+    image: http://placehold.it/350x250
+    image_alt: "image"
+    text: "Some text here."
+    nav: sidebar-numerical
+  - title: "Another Title"
+    text: "More text here."
+    nav: sidebar-numerical
 ---
 #### INTRODUCTION
 A recursive root finding algorithm that takes in two values and finds the

@@ -63,7 +63,7 @@
 
   img {
     width: 100%;
-    
+
     &.emoji {
       width: 20px;
       height: 20px;
@@ -89,6 +89,9 @@
       position: sticky;
       top: 2em;
       float: right;
+      overflow-y: auto;
+      height: calc(100vh - #{$nav-height} - 2em );
+
     }
   }
 
@@ -315,4 +318,3 @@
     margin-right: initial;
   }
 }
-

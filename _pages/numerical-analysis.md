@@ -16,6 +16,7 @@ header:
 ### Non-Linear Methods
 * [multivariable newtons method]({{ site.baseurl }}{% post_url 2018-02-02-multivariable-newtons-method %})
 
+
 <!--
 Here's a [link to the google page](https://google.com)
 
@@ -55,4 +56,4 @@ Here's some inline equations `x+y`
   {% for post in posts %}
     {% include archive-single.html %}
   {% endfor %}
-{% endfor %} 
+{% endfor %}

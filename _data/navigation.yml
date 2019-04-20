@@ -2,14 +2,16 @@
 main:
   #- title: "Quick-Start Guide"
   #  url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-  - title: "About"
-    url: /about/
   # - title: "machine-learning"
   #   url: /machine-learning/
   #- title: "index"
   #  url: /index/
   - title: "numerical analysis"
     url: /numerical-analysis/
+  - title: "Operations Research"
+    url: /operations-research/
+  - title: "About"
+    url: /about/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
@@ -18,3 +20,12 @@ main:
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
+sidebar-numerical:
+  - title: Getting Started
+    children:
+      - title: "numerical analysis"
+        url: /numerical-analysis/
+  - title: Customization
+    children:
+      - title: "operations research"
+        url: /operations-research/

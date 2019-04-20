@@ -108,7 +108,12 @@ So we see our results show that our minimum converges to the below:
 |9|-1.3804089|-5.2608179|
 
 A plot of the above converging looks like the following:
-<img src="{{ site.baseurl }}/images/operations_reasearch/newtons_method/x_1_vs_x_2.png">
+
+<figure>
+  <img src="{{ site.baseurl}} /images/operations_reasearch/newtons_method/x_1_vs_x_2.png" alt="x1 vs x2 newtons method plot"/>
+  <figcaption><br>Example of custom sidebar content added as YAML Front Matter.</figcaption>
+</figure>
+
 We can see the trace of Newton's Method along the surface in the plot below:
 <img src="{{ site.baseurl }}/images/operations_reasearch/newtons_method/surface_plot.png">
 Finally we can see that we indeed have a minimum (since it is a bit difficult to tell) below:
@@ -149,7 +154,7 @@ $$\begin{vmatrix}  24x_1^2 & -4 \\ -4 & 2
  our confirmation that the numerical approximation works.
 
 
-### INITIAL PARAMETERS
+#### INITIAL PARAMETERS
 * x - the initial guess
 * epsilon - the error tolerance
 * f(x) - the gradient of f(x) which we set equal to g(x) above
@@ -162,7 +167,7 @@ f=@(x) [8*x(1)*x(1)*x(1) - 4*x(2);2*x(2)-4*x(1)+5];
 hf=@(x) [24*x(1)^2, -4; -4, 2];
 
 ```
-### Applying the function
+#### Applying the function
 * x_k:  [2 x n] vector holding approximated fixed points
 * k:    [1 x n] vector holding the total iterations
 * norm_residual_k: [1 x n] vector holding the error for each iteration
@@ -170,7 +175,7 @@ hf=@(x) [24*x(1)^2, -4; -4, 2];
 ```matlab
 [x_k,k,norm_residual_k] = newton_mthd_nonlinear(x,f,hf,epsilon);
 ```
-### PLOT PARAMETERS
+#### PLOT PARAMETERS
 Plotting the estimated fixed point vs the iteration number
 ```matlab
 figure(1)

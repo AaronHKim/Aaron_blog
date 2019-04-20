@@ -10,9 +10,14 @@ var store = [{
         "url": "http://localhost:4000/fixed-point-iteration/",
         "teaser":null},{
         "title": "Newton's Method Nonlinear Method for Scalars",
-        "excerpt":"Introduction Linear Newton’s Method In a previous program we showed how to solve Newton’s method for a single variable by doing the following: Have a continous function for which there exists a minima, call it $f(x)$ If we find the first derivative of the function, we find the critical points...","categories": [],
+        "excerpt":"Introduction Linear Newton’s Method In a previous program we showed how to solve Newton’s method for a single variable by doing the following: Have a continuous function for which there exists a minima, call it $f(x)$ If we find the first derivative of the function, we find the critical points...","categories": [],
         "tags": ["post"],
         "url": "http://localhost:4000/multivariable-newtons-method/",
+        "teaser":null},{
+        "title": "Steepest Descent",
+        "excerpt":"steepest descent 1. compute $\\vec{x}^{(1)},\\vec{x}^{(2)}$ using steepest descent ${\\vec{x}^{(k)}}$ for $f(x_1,x_2)=2x_1^4+x_2^2-4x_1x_2+5x_2$ with initial point $\\vec{x}^{(0)}=(0,0)$ 2. So we know from the book that the steepest descent method is bounded by $f^{(k+1)}&lt;f^{(k)}$, so if we set our error tolerance to that, then we know that our method should stop. The rest...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/steepest-descent/",
         "teaser":null},{
         "title": "Bisection Method",
         "excerpt":"INTRODUCTION A recursive root finding algorithm that takes in two values and finds the a midpoint between them. The next iterate always chooses two values with different signs. If the root exists and sign of f(left) and f(right) are different (one is a negative number and the other is a...","categories": [],
