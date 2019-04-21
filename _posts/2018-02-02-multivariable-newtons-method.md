@@ -109,7 +109,7 @@ So we see our results show that our minimum converges to the below:
 
 A plot of the above converging looks like the following:
 
-  <img src="{{ site.baseurl}} /images/operations_reasearch/newtons_method/x_1_vs_x_2.png">
+  <img src="{{ site.baseurl}}/images/operations_reasearch/newtons_method/x_1_vs_x_2.png">
 
 We can see the trace of Newton's Method along the surface in the plot below:
 <img src="{{ site.baseurl }}/images/operations_reasearch/newtons_method/surface_plot.png">
