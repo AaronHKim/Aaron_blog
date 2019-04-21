@@ -6,7 +6,7 @@ main:
   #   url: /machine-learning/
   #- title: "index"
   #  url: /index/
-  - title: "numerical analysis"
+  - title: "Numerical Analysis"
     url: /numerical-analysis/
   - title: "Operations Research"
     url: /operations-research/

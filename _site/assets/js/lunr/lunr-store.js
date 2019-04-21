@@ -19,6 +19,16 @@ var store = [{
         "tags": [],
         "url": "http://localhost:4000/steepest-descent/",
         "teaser":null},{
+        "title": "Secant Method",
+        "excerpt":"INTRODUCTION Secant Method is an iterative root finding algorithm that approximates roots using a succession of secant lines, by finding the next iteration based off the previous two iterations. This method does not always converge, hence it requires an initial guess that is somewhat close to the root. It also...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/secant-method/",
+        "teaser":null},{
+        "title": "Secant Method",
+        "excerpt":"INTRODUCTION Secant Method is an iterative root finding algorithm that approximates roots using a succession of secant lines, by finding the next iteration based off the previous two iterations. This method does not always converge, hence it requires an initial guess that is somewhat close to the root. It also...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/square-root-approximation/",
+        "teaser":null},{
         "title": "Bisection Method",
         "excerpt":"INTRODUCTION A recursive root finding algorithm that takes in two values and finds the a midpoint between them. The next iterate always chooses two values with different signs. If the root exists and sign of f(left) and f(right) are different (one is a negative number and the other is a...","categories": [],
         "tags": [],

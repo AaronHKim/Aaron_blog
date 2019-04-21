@@ -15,6 +15,9 @@ header:
 
 * [newtons method (linear)]({{ site.baseurl }}{% post_url 2018-02-04-newtons-method %})
 
+* [secant method]({{ site.baseurl }}{% post_url 2018-02-05-secant-method %})
+
+
 
 ### Non-Linear Methods
 * [multivariable newtons method]({{ site.baseurl }}{% post_url 2018-02-02-multivariable-newtons-method %})
