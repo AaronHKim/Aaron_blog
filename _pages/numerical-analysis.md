@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: archive
 permalink: /numerical-analysis/
 title: "Notes and Code for Numerical Methods"
 author_profile: true
@@ -12,6 +12,9 @@ header:
 * [false position]({{ site.baseurl }}{% post_url 2018-01-30-false-position %})
 
 * [fixed point iteration]({{ site.baseurl }}{% post_url 2018-02-01-fixed-point-iteration %})
+
+* [newtons method (linear)]({{ site.baseurl }}{% post_url 2018-02-04-newtons-method %})
+
 
 ### Non-Linear Methods
 * [multivariable newtons method]({{ site.baseurl }}{% post_url 2018-02-02-multivariable-newtons-method %})

@@ -1,7 +1,7 @@
 ---
 title: "Fixed Point Iteration"
 date: 2018-02-01
-tags: [post]
+#tags: [post]
 header:
   #image:
 excerpt: "this is my test post"

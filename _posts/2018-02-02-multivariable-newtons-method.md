@@ -1,7 +1,7 @@
 ---
 title: "Newton's Method Nonlinear Method for Scalars"
 date: 2018-02-02
-tags: [post]
+#tags: [post]
 header:
   #image:
 excerpt: "This is a program intended to solve for critical points of multivariable

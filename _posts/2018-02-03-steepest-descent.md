@@ -1,3 +1,16 @@
+---
+title: "Steepest descent"
+date: 2018-02-03
+#tags: [post]
+header:
+  #image:
+excerpt: "This is a program intended to solve for critical points of multivariable
+functions by applying steepest descent."
+mathjax: "true"
+published: true
+toc: true
+toc_sticky: true
+---
 ## steepest descent
 
 #### 1.
