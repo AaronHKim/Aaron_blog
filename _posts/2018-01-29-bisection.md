@@ -19,6 +19,7 @@ sidebar:
   #- title: "Another Title"
   #  text: "More text here."
     nav: sidebar-numerical
+  # asdf
 ---
 #### INTRODUCTION
 A recursive root finding algorithm that takes in two values and finds the
