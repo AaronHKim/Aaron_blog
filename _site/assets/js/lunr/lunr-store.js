@@ -24,8 +24,8 @@ var store = [{
         "tags": [],
         "url": "http://localhost:4000/secant-method/",
         "teaser":null},{
-        "title": "Secant Method",
-        "excerpt":"INTRODUCTION Secant Method is an iterative root finding algorithm that approximates roots using a succession of secant lines, by finding the next iteration based off the previous two iterations. This method does not always converge, hence it requires an initial guess that is somewhat close to the root. It also...","categories": [],
+        "title": "Square Root Approximation",
+        "excerpt":"INTRODUCTION A recursive square root approximation algorithm This takes in an initial guess, the known value, and how many times you would like to iterate. INITIAL PARAMETERS initial_guess - the initial guess for the square root of an algorithm square_root - the actual square root total_iterations - the number of...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/square-root-approximation/",
         "teaser":null},{

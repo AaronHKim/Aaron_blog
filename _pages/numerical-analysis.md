@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: single
 permalink: /numerical-analysis/
 title: "Notes and Code for Numerical Methods"
 author_profile: true
@@ -17,7 +17,9 @@ header:
 
 * [secant method]({{ site.baseurl }}{% post_url 2018-02-05-secant-method %})
 
+### Matrix Operations
 
+### Methods For Systems of Linear Equations
 
 ### Non-Linear Methods
 * [multivariable newtons method]({{ site.baseurl }}{% post_url 2018-02-02-multivariable-newtons-method %})

@@ -12,13 +12,13 @@ toc_sticky: true
 
 
 sidebar:
-  - title: "Title"
-    image: http://placehold.it/350x250
-    image_alt: "image"
-    text: "Some text here."
-    nav: sidebar-numerical
-  - title: "Another Title"
-    text: "More text here."
+  #- title: "Title"
+  #  image: http://placehold.it/350x250
+  #  image_alt: "image"
+  #  text: "Some text here."
+  #- title: "Another Title"
+  #  text: "More text here."
+  - title: "Numerical Analysis"
     nav: sidebar-numerical
 ---
 #### INTRODUCTION
@@ -46,7 +46,7 @@ first_pt=2.25;
 second_pt=2.75;
 ```
 #### Applying the function
-This method stores the two outputs:
+This method stores the three outputs:
 * p_n: an [1 x n] vector holding the approximated root of f(x)
 * n:   [n x 1] vector holding the iteration number
 * error: the approximate error for our method

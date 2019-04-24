@@ -1,119 +1,106 @@
 ---
-title: "Secant Method"
+title: "Square Root Approximation"
 date: 2018-02-05
 #tags: [post]
 header:
   #image:
-excerpt: "secant method"
+excerpt: "square root approximation"
 mathjax: "true"
 published: true
 toc: true
 toc_sticky: true
 
-
 sidebar:
-  - title: "Title"
-    image: http://placehold.it/350x250
-    image_alt: "image"
-    text: "Some text here."
-    nav: sidebar-numerical
-  - title: "Another Title"
-    text: "More text here."
+  #- title: "Title"
+  #  image: http://placehold.it/350x250
+  #  image_alt: "image"
+  #  text: "Some text here."
+  #- title: "Another Title"
+  #  text: "More text here."
+  - title: "Numerical Analysis"
     nav: sidebar-numerical
 ---
 #### INTRODUCTION
-Secant Method is an iterative root finding algorithm that approximates
-roots using a succession of secant lines, by finding the next iteration
-based off the previous two iterations.
-This method does not always converge, hence it requires an initial guess
-that is somewhat close to the root. It also requires at least two initial
-guesses, a function that we are attempting to find the root of, and
-the error tolerance.
+A recursive square root approximation algorithm
+This takes in an initial guess, the known value, and how many times you
+would like to iterate.
+
 
 
 #### INITIAL PARAMETERS
-* first_pt - the first of two initial guesses required for the secant method
-* second_pt - the second of two initial guesses required for secant method.
-* epsilon - the error tolerance
-* f - the equation we are trying to solve the fixed points of
-* p - the matrix intended to hold the fixed points
+* initial_guess - the initial guess for the square root of an algorithm
+* square_root - the actual square root
+* total_iterations - the number of iterations we would like to perform to see how accurately the method determines the square root
 
 ```matlab
-p = 0;
-f = @(x) x.^2-5;
-epsilon = 1.*10.^-6;
-first_pt=2.25;
-second_pt=2.75;
+initial_guess = 1;
+square_root = 7;
+total_iterations = 6;
 ```
 #### Applying the function
-This method stores the two outputs:
-* p_n: an [1 x n] vector holding the approximated root of f(x)
-* n:   [n x 1] vector holding the iteration number
-* error: the approximate error for our method
+This method stores the three outputs:
+* approx: vector of approximated values from the bisection method.
+* error:  vector of errors for each iteration
+* length: number of iterations done in the algorithm
+
 
 
 ```matlab
-[p_n,error,n]=secant(first_pt,second_pt,p,f,epsilon);
+[approx, error, length] = square_root_approx_true(initial_guess, square_root, total_iterations);
 ```
 #### PLOT PARAMETERS
 
-Plotting the estimated root vs the iteration number
+The plot function plots the x-axis values, then the y-axis values
+the below plots two different plots on the same graph.
+We are plotting the approximate values and the error on the same graph
 ```matlab
 figure(1)
-plot(n,p_n)
-title('Secant Method approximation')
-xlabel('Iteration Number')
-ylabel('Approximated Root Value')
-legend('Approximated Root at n')
+plot(length,approx,length,error)
+title('square root approximation and error')
+xlabel('iteration number')
+ylabel('approximate value')
+legend('approximate value','error')
+saveas(figure(1),[pwd '/approximation_vs_error.png']);
 ```
-<img src="{{ site.baseurl }}/images/numerical_analysis/linear_methods/secant_method/approximation_vs_iteration.png">
+<img src="{{ site.baseurl }}/images/numerical_analysis/linear_methods/square_root_approximation/approximation_vs_error.png">
 
 #### SECANT METHOD FUNCTION
 
-##### This function has 5 inputs:
-1. The first initial guess
-2. The second initial guess
-3. The vector containing the fixed points per iteration
-4. The function we are trying to determine the fixed points of.
-5. The error tolerance (how much error we are willing to accept)
+##### This function has 3 inputs:
+1. The initial guess for the recursive approximation
+2. The true value of the approximation (to compare to the error)
+3. The number of desired iterations
+
 
 ##### This function has 3 outputs:
-1. Fixed Points for each iteration, Dimension: [1 x n]
-2. Superlinear error approximation, Dimension: [1 x n-1]
-3. Iteration number, Dimension: [1 x n]
+1. a [1 x nMax] matrix of each approximation of the square root for a value
+2. a [1 x nMax] matrix of the error at each iteration of the approximation
+3. a [1 x nMax] matrix containing the current step for plotting purposes
+
 
 ```matlab
-function [fixed_point,error,n] = secant(first_guess,second_guess,fixed_point,func,epsilon)
-    %initializing variables for the while loop
-    i = 0;
-    error= epsilon + epsilon;
-    fixed_point(1)=first_guess;
-    fixed_point(2)=second_guess;
+function [sq_rt_apprx,error,length] = square_root_approx_true(initial_guess, value, nMax)
+    % A 1 x nMax matrix to contain the approximation of each iteration
+    sq_rt_apprx = [1:nMax];
+    % A 1 x nMax matrix to contain the error of each iteration
+    error = [1:nMax];
+    % A 1 x nMax matrix that counts the iteration number for plotting
+    length = [1:nMax];
+    % This sets the first value of the array as the initial guess
+    sq_rt_apprx(1,1) = initial_guess;
 
-    while(error>epsilon)
-        i=i+1;
-        %set to i=2 or greater since, the algorithm requires p(n) and
-        %p(n-1) to run.
-        if i>1
-            % named run because it is a difference in x values
-            run = fixed_point(i)-fixed_point(i-1);
-            % names rise because it is a difference in y values
-            rise = func(fixed_point(i))-func(fixed_point(i-1));
-            % fixed point algorithm
-            fixed_point(i+1) = fixed_point(i)-func(fixed_point(i)).*((run)/(rise));
-
-        end
-        % e(n-1)? abs(p(n)-p(n-1) < epsilon
-        % I reindexed the formula since in Matlab there is no 0th
-        % index position
-        error(i) = abs(fixed_point(i+1)-fixed_point(i));
-        % prints the fixed poitn and error at each iteration
-        fprintf('p: %.9d,error:%.9d\n',fixed_point(i),error(i));
+    %Since we have the first value there are only nMax-1 values left to
+    %approximate
+    for i=1 : (nMax-1)
+        %the simple formula: x(n+1) = (1/2)*(x(n)+ a/(x(n)))
+        %if a square root is unknown this formula will eventually converge to a
+        %desired square root
+        sq_rt_apprx(1,i+1) = (1/2) * (sq_rt_apprx(1,i) + value/(sq_rt_apprx(1,i)));
+        %this is the actual error of the approximation for each iteration
+        error(1,i) = abs(sq_rt_apprx(1,i)-sqrt(value));
     end
-    % prints an additional iteration of the root, which is even more
-    % accurate than the previous
-    fprintf('p: %.9d,error:N/A\n',fixed_point(i+1));
-    % sets the number of total p(n) values calculated
-    n=[1:i+1];
+    %since the for loop contains nMax-1 total iterations, we need to find the
+    %error for the final iteration nMax, which is done here.
+    error(1,nMax) = abs(sq_rt_apprx(1,nMax) - sqrt(value));
 end
 ```

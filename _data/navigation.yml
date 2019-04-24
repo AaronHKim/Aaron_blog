@@ -21,11 +21,21 @@ main:
   # - title: "Sitemap"
   #   url: /sitemap/
 sidebar-numerical:
-  - title: Getting Started
+  - title: "Linear Methods"
     children:
-      - title: "numerical analysis"
-        url: /numerical-analysis/
-  - title: Customization
+      - title: "bisection method"
+        url: /bisection/
+      - title: "false position"
+        url: /false-position/
+      - title: "fixed point iteration"
+        url: /fixed-point-iteration/
+      - title: "newtons method(linear)"
+        url: /newtons-method/
+      - title: "secant method"
+        url: /secant-method/
+      - title: "square root approximation"
+        url: /square-root-approximation/
+  - title: "Other topics"
     children:
       - title: "operations research"
         url: /operations-research/

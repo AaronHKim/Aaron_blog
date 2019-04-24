@@ -12,13 +12,13 @@ toc_sticky: true
 
 
 sidebar:
-  - title: "Title"
-    image: http://placehold.it/350x250
-    image_alt: "image"
-    text: "Some text here."
-    nav: sidebar-numerical
-  - title: "Another Title"
-    text: "More text here."
+  #- title: "Title"
+  #  image: http://placehold.it/350x250
+  #  image_alt: "image"
+  #  text: "Some text here."
+  #- title: "Another Title"
+  #  text: "More text here."
+  - title: "Numerical Analysis"
     nav: sidebar-numerical
 ---
 #### INTRODUCTION

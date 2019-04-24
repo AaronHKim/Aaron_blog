@@ -4,7 +4,7 @@ date: 2018-02-29
 #tags: [post]
 header:
   #image:
-excerpt: "this is my test post"
+excerpt: "this is the excerpt"
 mathjax: "true"
 published: true
 toc: true
@@ -12,13 +12,12 @@ toc_sticky: true
 
 
 sidebar:
-  - title: "Title"
-    image: http://placehold.it/350x250
-    image_alt: "image"
-    text: "Some text here."
-    nav: sidebar-numerical
-  - title: "Another Title"
-    text: "More text here."
+  - title: "Numerical Analysis"
+  # image: http://placehold.it/350x250
+  #  image_alt: "image"
+  #  text: "Some text here."
+  #- title: "Another Title"
+  #  text: "More text here."
     nav: sidebar-numerical
 ---
 #### INTRODUCTION

@@ -9,6 +9,10 @@ mathjax: "true"
 published: true
 toc: true
 toc_sticky: true
+
+sidebar:
+  - title: "Numerical Analysis"
+    nav: sidebar-numerical
 ---
 
 ### INTRODUCTION
