@@ -24,16 +24,17 @@ sidebar:
 A recursive matrix root finding algorithm that takes in an initial
 matrix, and solves for a fixed point solution for a system of linear
 equations. It solves the following problem: x(:,k+1) = A * x(:,k) + c(:,1)
-Conjugate Gradient solves this equation by solving the equation for
-steepest decent of the conjugate A-conjugate search directions, assuming
-they exist.
-
+Successive Over Relaxation is distinct from Jacobi and Gauss Seidel
+because it makes use of a constant weighting factor, where convergence
+may be faster  than both depending on the weighting factor chosen.
 
 #### INITIAL PARAMETERS
 * A: [n x n] initial matrix
-* b: [n x 1] vector solution
+* b: [n x 1] vector
 * x: [n x 1] The fixed point vector being guessed
-* epsilon: an error tolerance
+* k: the iteration number
+* n: the dimension of the matrix and vector.
+* w: weighting factor. This is a constant that converges best if 1 < w < 2.
 
 $$A = \begin{bmatrix}
  4 & 2 & 0\\
@@ -51,69 +52,91 @@ x = \begin{bmatrix}
 \end{bmatrix}$$
 
 ```matlab
-a=[4,2,0;2,10,3;0,3,5];
+w=3/2;
+a = [4,2,0;2,10,3;0,3,5];
 b=[0;-9;9];
-x=zeros(size(a,1),1);
 epsilon = 1*10^-6;
 ```
 
 #### Applying the function
 This method stores the two outputs:
-* k: the iteration at which the vector converged
+* x_k [n x k+1] matrix holding the approximated solutions to the system of linear equations
 * x: the approximated vector fixed points at each iteration
 
 ```matlab
-[k,x]=conjugate_gradient(a,b,x,epsilon);
+[x_k]=SOR(a,b,w,epsilon);
 ```
 
 #### Gauss Elimination FUNCTION
 
 ##### This function has 1 input:
-1. a: [n x n] matrix we are trying to find the fixed point of
-2. b: [n x 1] vector we are trying to find solutions for
-3. x: [n x k+1] vector that holds the fixed point approximations for each
-      iteration
-4. epsilon: The error tolerance
+1. The initial matrix A [n x n]
+2. The solution vector b [n x 1]
+3. The weight factor (scalar)
+4. The error tolerance (scalar)
 
 ##### This function has 1 output:
-1. k: [1 x 1] the iteration number   
-2. x: [n x k+1] matrix holding the iterative approximation for the fixed point at iteration k
+1. A [ n x (k+1)], matrix holding the k+1 fixed point approximations
 
 ```matlab
-function [k,x]=conjugate_gradient(a,b,x,epsilon)
-    %INITIALIZING VARIABLES
-    %scalar holding the iteration number
+function [x] = SOR(a,b,w,epsilon)
+    % INITIALIZING VARIABLES
+    %----------------------------------------------
+    % Initialize x to satisfy the while loop
+    x = zeros(size(a,1),1);
+    % Initialize the size of n since we need to go thorough each row
+    n=size(a,1);
+    % These are for cosmetic purposes
+    sum1 = 0;
+    sum2 = 0;
+    % setting the intiial iteration
     k=1;
-    % The initial equation we are solving the convergence for
-    r = a.*x(:,k)-b;
-    % the initial direction of steepest decent is -r
-    d(:,1)=-r(:,1);
 
-    % Sets a measurement function which can be thought of as distance in
-    % cartesian coordinates as the error tolerance.
-    while norm(r(:,k))>epsilon
+    % The norm is used to determine whether or not the matrix is within a
+    % the desired error tolerance (You can think of it as a sort of
+    % distance formula)
+    while norm(a*x(:,k)-b)>epsilon
+        % goes through each row
+        for i=1:n
 
-        % The step size (a constant)
-        lambda(k)=((-transpose(d(:,k))*r(:,k)))/(transpose(d(:,k))*a*d(:,k));
-        % The updated approximation x(k+1)= x(k) + the stepsize and distance
-        x(:,k+1)=x(:,k)+lambda(k)*d(:,k);
-        % The residual of the new aproximation (the error)
-        r(:,k+1)=a*x(:,k+1)-b;
-        % A constant to make sure that the distance is in the direction of
-        % a conjugate
-        alpha(k)=(transpose(r(:,k+1))*a*d(:,k))/(transpose(d(:,k))*a*d(:,k));
-        % The updated distance for iteration k+1
-        d(:,k+1)=-r(:,k+1)+alpha(k)*d(:,k);
-        %iteration update
+            % The first summation
+            for j = 1:i-1
+                sum1=sum1+a(i,j).*x(j,k+1);
+            end
+
+            % The second summation
+            for l=i+1:n
+                sum2=sum2+a(i,l).*x(l,k);
+            end
+
+            % The iterative approximation formula
+            x(i,k+1)=(1-w).*x(i,k)+(w/a(i,i))*(b(i,1)-sum1-sum2);
+
+            % resets the sums
+            sum1=0;
+            sum2=0;
+        end
+
+        %increases the index of k+1
         k=k+1;
     end
+
 end
 ```
 ##### Function Output
 ```matlab
->> conjugategradient
-[ 0,    0, 0.48175182,  1.0]
-[ 0, -2.0, -1.8394161, -2.0]
-[ 0,  2.0,  3.0437956,  3.0]
+>> successiveoverrelaxation
+  Columns 1 through 15
+
+           0           0   1.0125000   1.5491250   0.6418238   1.0711814   1.0252382   0.9918509   0.9872134   1.0115144   0.9965633   0.9995795   1.0004215   1.0002458   0.9996554
+           0  -1.3500000  -2.7405000  -1.8885150  -1.8561244  -2.0811052  -2.0059600  -1.9775186  -2.0068281  -2.0030940  -1.9971482  -2.0002816  -2.0006087  -1.9997044  -1.9999572
+           0   3.9150000   3.2089500   2.7951884   2.9729178   3.0865357   2.9620960   2.9987187   3.0067861   2.9993916   2.9977376   3.0013847   2.9998555   2.9998062   3.0000584
+
+  Columns 16 through 26
+
+   1.0001402   0.9999972   0.9999845   0.9999971   1.0000095   0.9999949   1.0000007   1.0000005   0.9999999   0.9999998   1.0000001
+  -2.0000896  -1.9999775  -1.9999859  -2.0000107  -1.9999995  -1.9999975  -2.0000010  -2.0000002  -1.9999996  -2.0000000  -2.0000000
+   3.0000515   2.9999540   3.0000103   3.0000045   2.9999974   2.9999990   3.0000014   2.9999995   3.0000000   3.0000000   3.0000000
+
 
 ```
