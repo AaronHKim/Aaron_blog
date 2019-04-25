@@ -39,6 +39,10 @@ sidebar-numerical:
     children:
       - title: "gaussian elimination"
         url: /gaussian-elimination/
+  - title: "Systems of Linear Equations"
+    children:
+      - title: "conjugate gradient"
+        url: /conjugate-gradient/
   - title: "Other topics"
     children:
       - title: "operations research"

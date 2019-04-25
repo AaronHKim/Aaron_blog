@@ -22,7 +22,7 @@ header:
 * [gaussian elimination]({{ site.baseurl }}{% post_url 2018-02-07-gaussian-elimination %})
 
 ### Methods For Systems of Linear Equations
-
+* [conjugate gradient]({{ site.baseurl }}{% post_url 2018-02-08-conjugate-gradient %})
 ### Non-Linear Methods
 * [multivariable newtons method]({{ site.baseurl }}{% post_url 2018-02-02-multivariable-newtons-method %})
 
