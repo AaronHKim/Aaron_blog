@@ -58,61 +58,62 @@ epsilon = 1*10^-6;
 ```
 
 #### Applying the function
-This method stores the one output:
-* final_matrix: stores the final reduced matrix after performing gaussian elimination
+This method stores the two outputs:
+* k: the iteration at which the vector converged
+* x: the approximated vector fixed points at each iteration
 
 ```matlab
-[final_matrix]=gauss_elim(B);
+[k,x]=conjugate_gradient(a,b,x,epsilon);
 ```
 
 #### Gauss Elimination FUNCTION
 
 ##### This function has 1 input:
-1. Takes in an [n x m] Matrix
-
+1. a: [n x n] matrix we are trying to find the fixed point of
+2. b: [n x 1] vector we are trying to find solutions for
+3. x: [n x k+1] vector that holds the fixed point approximations for each
+      iteration
+4. epsilon: The error tolerance
 
 ##### This function has 1 output:
-1. Outputs a reduced [n x m] Matrix
-
+1. k: [1 x 1] the iteration number   
+2. x: [n x k+1] matrix holding the iterative approximation for the fixed point at iteration k
 
 ```matlab
-function [Matrix] = gauss_elim(Matrix)
+function [k,x]=conjugate_gradient(a,b,x,epsilon)
+    %INITIALIZING VARIABLES
+    %scalar holding the iteration number
+    k=1;
+    % The initial equation we are solving the convergence for
+    r = a.*x(:,k)-b;
+    % the initial direction of steepest decent is -r
+    d(:,1)=-r(:,1);
 
-    % locks in the first row and reduces rows below
-    for pivotrow=1 : size(Matrix,1)-1
-        % in each iteration the pivot row changes as we move down the
-        % matrix. This allows the subsequent iterations to always only
-        % treat the reduced rows above it as finished pivot rows
+    % Sets a measurement function which can be thought of as distance in
+    % cartesian coordinates as the error tolerance.
+    while norm(r(:,k))>epsilon
 
-        for row = pivotrow+1:size(Matrix,1)
-            % creates a normalization factor for a row
-            m=Matrix(row,pivotrow)/Matrix(pivotrow,pivotrow);
-            % sets the element beneath the diagonal to zero. Since we know
-            % the objective is to zero out the elements in each column, we
-            % can just set them to zero and avoid the calculation and just
-            % calculate the data we need in the rows above.
-            Matrix(row,pivotrow)=0;
-
-            % updates the remaining elements in the row that have been row
-            % reduced
-            for col=pivotrow+1:size(Matrix,1)-1
-                Matrix(row,col)=Matrix(row,col)-m.*Matrix(pivotrow,col);
-            end
-
-        end
-
+        % The step size (a constant)
+        lambda(k)=((-transpose(d(:,k))*r(:,k)))/(transpose(d(:,k))*a*d(:,k));
+        % The updated approximation x(k+1)= x(k) + the stepsize and distance
+        x(:,k+1)=x(:,k)+lambda(k)*d(:,k);
+        % The residual of the new aproximation (the error)
+        r(:,k+1)=a*x(:,k+1)-b;
+        % A constant to make sure that the distance is in the direction of
+        % a conjugate
+        alpha(k)=(transpose(r(:,k+1))*a*d(:,k))/(transpose(d(:,k))*a*d(:,k));
+        % The updated distance for iteration k+1
+        d(:,k+1)=-r(:,k+1)+alpha(k)*d(:,k);
+        %iteration update
+        k=k+1;
     end
-
 end
-
 ```
 ##### Function Output
 ```matlab
-final_matrix =
+>> conjugategradient
+[ 0,    0, 0.48175182,  1.0]
+[ 0, -2.0, -1.8394161, -2.0]
+[ 0,  2.0,  3.0437956,  3.0]
 
-    3.0000   -1.0000    1.0000    2.0000         0   10.0000
-         0   -4.6667    2.6667    0.3333   -2.0000    1.0000
-         0         0    4.2857    3.7857         0  -17.0000
-         0         0         0   -2.1833   -3.0000    4.0000
-         0         0         0         0    1.0000  -19.0000
 ```
