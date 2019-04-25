@@ -1,10 +1,10 @@
 ---
-title: "Square Root Approximation"
-date: 2018-02-06
+title: "Gaussian Elimination"
+date: 2018-02-07
 #tags: [post]
 header:
   #image:
-excerpt: "square root approximation"
+excerpt: "Gaussian Elimination Code"
 mathjax: "true"
 published: true
 toc: true
@@ -21,22 +21,26 @@ sidebar:
     nav: sidebar-numerical
 ---
 #### INTRODUCTION
-A recursive square root approximation algorithm
-This takes in an initial guess, the known value, and how many times you
-would like to iterate.
-
-
+A standard method for reducing matricies that can be solved easily. This
+makes sure that the lower triangle of the matrix is all set to zeros,
+which allows for a quick recursive iteration to solve the variables for
+each variable algebrically. Gauss-Jordan performs a similar task.
 
 #### INITIAL PARAMETERS
-* initial_guess - the initial guess for the square root of an algorithm
-* square_root - the actual square root
-* total_iterations - the number of iterations we would like to perform to see how accurately the method determines the square root
+* B - the matrix we would like to reduce
 
+$$\begin{matrix}
+3 -1 1 2 0 10\\
+-2 -4 2 -1 -2 1\\
+ -4 3 2 1 0 -17\\
+1 -2 4 1 -3 4\\
+-3 4 -2 2 1 -19\\
+\end{matrix}$$
 ```matlab
-initial_guess = 1;
-square_root = 7;
-total_iterations = 6;
+B = [3 -1 1 2 0 10; -2 -4 2 -1 -2 1; -4 3 2 1 0 -17; 1 -2 4 1 -3 4; -3 4 -2 2 1 -19];
 ```
+
+
 #### Applying the function
 This method stores the three outputs:
 * approx: vector of approximated values from the bisection method.

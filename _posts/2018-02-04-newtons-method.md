@@ -1,6 +1,6 @@
 ---
 title: "Newton's Method(linear)"
-date: 2018-02-29
+date: 2018-02-04
 #tags: [post]
 header:
   #image:
