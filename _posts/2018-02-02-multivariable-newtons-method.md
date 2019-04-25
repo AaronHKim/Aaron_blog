@@ -116,7 +116,7 @@ We can see the trace of Newton's Method along the surface in the plot below:
 Finally we can see that we indeed have a minimum (since it is a bit difficult to tell) below:
 <img src="{{ site.baseurl }}/images/operations_reasearch/newtons_method/lowest_point_in_z.png">
 
-##### Verifying Results Using Calculus
+#### Verifying Results Using Calculus
 checking for critical points using the gradient:
 
 $$\begin{bmatrix}\frac{\partial f}{\partial x_1} \\
