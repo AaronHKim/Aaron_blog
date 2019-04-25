@@ -24,7 +24,7 @@ sidebar:
 A standard method for reducing matricies that can be solved easily. This
 makes sure that the lower triangle of the matrix is all set to zeros,
 which allows for a quick recursive iteration to solve the variables for
-each variable algebrically. Gauss-Jordan performs a similar task.
+each variable algebraically. Gauss-Jordan performs a similar task.
 
 #### INITIAL PARAMETERS
 * B - the matrix we would like to reduce

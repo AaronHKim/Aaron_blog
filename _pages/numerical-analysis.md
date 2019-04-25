@@ -17,8 +17,9 @@ header:
 
 * [secant method]({{ site.baseurl }}{% post_url 2018-02-05-secant-method %})
 
+* [square root approximation]({{ site.baseurl }}{% post_url 2018-02-06-square-root-approximation %})
 ### Matrix Operations
-* [gaussian elimination]({{ site.baseurl }}{% post_url 2018-02-05-gaussian-elimination %})
+* [gaussian elimination]({{ site.baseurl }}{% post_url 2018-02-07-gaussian-elimination %})
 
 ### Methods For Systems of Linear Equations
 
