@@ -14,7 +14,7 @@ toc_sticky: true
 
 ## Introduction
 
-##### Linear Newton's Method
+#### Linear Newton's Method
 
 In a previous program we showed how to solve Newton's method for a single
 variable by doing the following:
@@ -35,7 +35,7 @@ g'(x^{(k)})(x^{(k+1)}-x^{(k)}) $$.
 5. We can also solve for this explicitly by solving for $x^{(k+1)}$:
 $$ x^{(k+1)} = x^{(k)}-\frac{g(x^{(k)})}{g'(x^{(k)})} $$
 
-##### Multivariable Newton's Method
+#### Multivariable Newton's Method
 
 Here we would like to solve for the multivariable case, and we use a similar
 logic:
