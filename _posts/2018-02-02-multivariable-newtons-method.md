@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 ---
 
-## Introduction
+### Introduction
 
 #### Linear Newton's Method
 
@@ -57,7 +57,7 @@ $Hf$ to get the following equations:
   * $\begin{bmatrix}Hf(x^{(k)})\end{bmatrix} (x^{(k+1)}-x^{(k)})=-g(x^{(k)}))$ (***implicit***)
   * $(x^{(k+1)})=x^{(k)}-\begin{bmatrix}Hf(x^{(k)})\end{bmatrix}^{-1}g(x^{(k)}))$ (***explicit***)
 
-## Example problem:
+### Example problem:
 Computer the first two terms $x^{(1)}$, $x^{(2)}$ of the Newton's Method
 sequence $x^{(k)}$ for minimizing the function
 $$f(x_1,x_2)=2x_1^4+x_2^2-4x_1x_2+5x_2$$ with the initial point $x^{(0)}=(0,0)$
