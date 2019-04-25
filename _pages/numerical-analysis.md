@@ -23,11 +23,15 @@ header:
 * [gaussian elimination]({{ site.baseurl }}{% post_url 2018-02-07-gaussian-elimination %})
 
 ### Methods For Systems of Linear Equations
+
 * [conjugate gradient]({{ site.baseurl }}{% post_url 2018-02-08-conjugate-gradient %})
+
 * [successive over relaxation]({{ site.baseurl }}{% post_url 2018-02-09-successive-over-relaxation %})
 
 ### Systems of Non-Linear Equations
-* [broydens method]({{ site.baseurl }}{% post_url 2018-2018-02-10-broydens-method %})
+
+* [broydens method]({{ site.baseurl }}{% post_url 2018-02-10-broydens-method %})
+
 * [multivariable newtons method]({{ site.baseurl }}{% post_url 2018-02-02-multivariable-newtons-method %})
 
 

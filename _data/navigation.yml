@@ -48,7 +48,7 @@ sidebar-numerical:
   - title: "Systems of Nonlinear Equations"
     children:
       - title: "Broydends Method"
-        url: /Broydens-Method/
+        url: /broydens-method/
       - title: "Vectorized Newton's Method"
         url: /multivariable-newtons-method/
   - title: "Other topics"
