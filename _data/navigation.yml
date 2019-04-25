@@ -35,6 +35,10 @@ sidebar-numerical:
         url: /secant-method/
       - title: "square root approximation"
         url: /square-root-approximation/
+  - title: "Matrix Operations"
+    children:
+      - title: "gaussian elimination"
+        url: /gaussian-elimination/
   - title: "Other topics"
     children:
       - title: "operations research"

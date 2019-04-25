@@ -29,82 +29,62 @@ each variable algebrically. Gauss-Jordan performs a similar task.
 #### INITIAL PARAMETERS
 * B - the matrix we would like to reduce
 
-$$\begin{matrix}
+$$\begin{bmatrix}
  3 & -1 &  1 &  2 &  0 & 10\\
 -2 & -4 &  2 & -1 & -2 &  1\\
 -4 &  3 &  2 &  1 &  0 & -17\\
  1 & -2 &  4 &  1 & -3 &  4\\
 -3 &  4 & -2 &  2 &  1 & -19\\
-\end{matrix}$$
+\end{bmatrix}$$
 ```matlab
 B = [3 -1 1 2 0 10; -2 -4 2 -1 -2 1; -4 3 2 1 0 -17; 1 -2 4 1 -3 4; -3 4 -2 2 1 -19];
 ```
 
-
 #### Applying the function
-This method stores the three outputs:
-* approx: vector of approximated values from the bisection method.
-* error:  vector of errors for each iteration
-* length: number of iterations done in the algorithm
-
-
+This method stores the one output:
+* final_matrix: stores the final reduced matrix after performing gaussian elimination
 
 ```matlab
-[approx, error, length] = square_root_approx_true(initial_guess, square_root, total_iterations);
+[final_matrix]=gauss_elim(B);
 ```
-#### PLOT PARAMETERS
 
-The plot function plots the x-axis values, then the y-axis values
-the below plots two different plots on the same graph.
-We are plotting the approximate values and the error on the same graph
-```matlab
-figure(1)
-plot(length,approx,length,error)
-title('square root approximation and error')
-xlabel('iteration number')
-ylabel('approximate value')
-legend('approximate value','error')
-saveas(figure(1),[pwd '/approximation_vs_error.png']);
-```
-<img src="{{ site.baseurl }}/images/numerical_analysis/linear_methods/square_root_approximation/approximation_vs_error.png">
+#### Gauss Elimination FUNCTION
 
-#### SECANT METHOD FUNCTION
-
-##### This function has 3 inputs:
-1. The initial guess for the recursive approximation
-2. The true value of the approximation (to compare to the error)
-3. The number of desired iterations
+##### This function has 1 input:
+1. Takes in an [n x m] Matrix
 
 
-##### This function has 3 outputs:
-1. a [1 x nMax] matrix of each approximation of the square root for a value
-2. a [1 x nMax] matrix of the error at each iteration of the approximation
-3. a [1 x nMax] matrix containing the current step for plotting purposes
+##### This function has 1 output:
+1. Outputs a reduced [n x m] Matrix
 
 
 ```matlab
-function [sq_rt_apprx,error,length] = square_root_approx_true(initial_guess, value, nMax)
-    % A 1 x nMax matrix to contain the approximation of each iteration
-    sq_rt_apprx = [1:nMax];
-    % A 1 x nMax matrix to contain the error of each iteration
-    error = [1:nMax];
-    % A 1 x nMax matrix that counts the iteration number for plotting
-    length = [1:nMax];
-    % This sets the first value of the array as the initial guess
-    sq_rt_apprx(1,1) = initial_guess;
+function [Matrix] = gauss_elim(Matrix)
 
-    %Since we have the first value there are only nMax-1 values left to
-    %approximate
-    for i=1 : (nMax-1)
-        %the simple formula: x(n+1) = (1/2)*(x(n)+ a/(x(n)))
-        %if a square root is unknown this formula will eventually converge to a
-        %desired square root
-        sq_rt_apprx(1,i+1) = (1/2) * (sq_rt_apprx(1,i) + value/(sq_rt_apprx(1,i)));
-        %this is the actual error of the approximation for each iteration
-        error(1,i) = abs(sq_rt_apprx(1,i)-sqrt(value));
+    % locks in the first row and reduces rows below
+    for pivotrow=1 : size(Matrix,1)-1
+        % in each iteration the pivot row changes as we move down the
+        % matrix. This allows the subsequent iterations to always only
+        % treat the reduced rows above it as finished pivot rows
+
+        for row = pivotrow+1:size(Matrix,1)
+            % creates a normalization factor for a row
+            m=Matrix(row,pivotrow)/Matrix(pivotrow,pivotrow);
+            % sets the element beneath the diagonal to zero. Since we know
+            % the objective is to zero out the elements in each column, we
+            % can just set them to zero and avoid the calculation and just
+            % calculate the data we need in the rows above.
+            Matrix(row,pivotrow)=0;
+
+            % updates the remaining elements in the row that have been row
+            % reduced
+            for col=pivotrow+1:size(Matrix,1)-1
+                Matrix(row,col)=Matrix(row,col)-m.*Matrix(pivotrow,col);
+            end
+
+        end
+
     end
-    %since the for loop contains nMax-1 total iterations, we need to find the
-    %error for the final iteration nMax, which is done here.
-    error(1,nMax) = abs(sq_rt_apprx(1,nMax) - sqrt(value));
+
 end
 ```
