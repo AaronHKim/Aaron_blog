@@ -45,6 +45,12 @@ sidebar-numerical:
         url: /conjugate-gradient/
       - title: "successive over relaxation"
         url: /successive-over-relaxation/
+  - title: "Systems of Nonlinear Equations"
+    children:
+      - title: "Broydends Method"
+        url: /Broydens-Method/
+      - title: "Vectorized Newton's Method"
+        url: /multivariable-newtons-method/
   - title: "Other topics"
     children:
       - title: "operations research"
