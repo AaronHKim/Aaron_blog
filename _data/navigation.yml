@@ -43,6 +43,8 @@ sidebar-numerical:
     children:
       - title: "conjugate gradient"
         url: /conjugate-gradient/
+      - title: "successive over relaxation"
+        url: /successive-over-relaxation/
   - title: "Other topics"
     children:
       - title: "operations research"

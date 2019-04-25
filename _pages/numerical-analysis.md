@@ -23,6 +23,7 @@ header:
 
 ### Methods For Systems of Linear Equations
 * [conjugate gradient]({{ site.baseurl }}{% post_url 2018-02-08-conjugate-gradient %})
+* [successive over relaxation]({{ site.baseurl }}{% post_url 2018-02-09-successive-over-relaxation %})
 ### Non-Linear Methods
 * [multivariable newtons method]({{ site.baseurl }}{% post_url 2018-02-02-multivariable-newtons-method %})
 
