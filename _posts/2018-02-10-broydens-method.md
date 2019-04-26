@@ -21,7 +21,7 @@ sidebar:
     nav: sidebar-numerical
 ---
 #### INTRODUCTION
-This is a program intended to solve for critical points of multivariabl
+This is a program intended to solve for critical points of multivariable function
 
 #### INITIAL PARAMETERS
 * x: [n x 1] initial guess
