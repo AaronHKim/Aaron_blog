@@ -66,7 +66,7 @@ This method stores the two outputs:
 [k,x]=conjugate_gradient(a,b,x,epsilon);
 ```
 
-#### Gauss Elimination FUNCTION
+#### Conjugate Gradient FUNCTION
 
 ##### This function has 1 input:
 1. a: [n x n] matrix we are trying to find the fixed point of

@@ -21,135 +21,90 @@ sidebar:
     nav: sidebar-numerical
 ---
 #### INTRODUCTION
-This is a program intended to solve for critical points of multivariable
-functions by applying Newton's Method.
-In a previous program we showed how to solve Newton's method for a single
-variable by doing the following:
-* Have a continous function for which there exists a minima, call it
-$f(x)$
-* If we find the first derivative of the function, we find the critical
-points of that function which can be a local minimum. i.e. $f'(x)=0$
-* We rename $f'(x)$ as $g(x)$ or $f'(x) = g(x)$ and solving for
-where this g(x) intersects the origin (where it is zero).
-* We procedurally solve for this by solving for tangent points to $g(x)$
-at a point. If you examine a given curve $g(x)$, if you use point slope
-form: $y-g(x) = g'(x^((k)))(x-x((k)))$, we find where it intersects the
-axis by setting $y=0$ giving us: $g(x)= g'(x^((k)))(x-x^((k)))$, and to
-find the next iterate, or the next approximation we set $x=x^((k+1))$.
-This gives us the following formula: $$ g(x) =
-g'(x^((k)))(x^((k+1))-x^((k))) $$.
-* We can also solve for this explicitly by solving for $x^((k+1))$:
-$$ x^((k+1)) = x^((k))-g(x^((k)))/g'(x^((k))) $$
+This is a program intended to solve for critical points of multivariabl
 
 #### INITIAL PARAMETERS
-* A: [n x n] initial matrix
-* b: [n x 1] vector
-* x: [n x 1] The fixed point vector being guessed
-* k: the iteration number
-* n: the dimension of the matrix and vector.
-* w: weighting factor. This is a constant that converges best if 1 < w < 2.
-
-$$A = \begin{bmatrix}
- 4 & 2 & 0\\
-2 & 10 & 3\\
-0 & 3 & 5\\
-\end{bmatrix} b = \begin{bmatrix}
-0 \\
--9 \\
-9 \\
-\end{bmatrix}
-x = \begin{bmatrix}
-0\\
-0\\
-0\\
-\end{bmatrix}$$
+* x: [n x 1] initial guess
+* epsilon: error tolerance
+* f: the function we are trying to find minima for
+* jf: the jacobian of f
 
 ```matlab
-w=3/2;
-a = [4,2,0;2,10,3;0,3,5];
-b=[0;-9;9];
+format long
+x=[2;4];
+f=@(x) [(x(1)*x(1))-(x(2)*x(2));(-x(1).*x(2)+1)];
+jf=@(x) [2*x(1), -2*x(2);-x(2),-x(1)];
 epsilon = 1*10^-6;
 ```
 
 #### Applying the function
 This method stores the two outputs:
-* x_k [n x k+1] matrix holding the approximated solutions to the system of linear equations
-* x: the approximated vector fixed points at each iteration
+* x_k: [n x k+1] matrix holding the approximated solutions to the system of linear equations
+* k: the iteration number we are at
+* norm_residual_k: a upper bound for the error given by the largest absolute value of the sum of terms in a row
+
 
 ```matlab
-[x_k]=SOR(a,b,w,epsilon);
+[x_k,k,norm_residual_k] = broydens_mthd(x,f,jf,epsilon);
 ```
-
-#### Gauss Elimination FUNCTION
-
-##### This function has 1 input:
-1. The initial matrix A [n x n]
-2. The solution vector b [n x 1]
-3. The weight factor (scalar)
-4. The error tolerance (scalar)
-
-##### This function has 1 output:
-1. A [ n x (k+1)], matrix holding the k+1 fixed point approximations
+#### PLOT PARAMETERS
+In the first plot, we are graphing (iteration vs the solution of each term) to show how each term
+in the solution vector converges.
+In the second plot we are graphing the upperbound of the error vs iteration to show that the error converges
+with successive iterations
 
 ```matlab
-function [x] = SOR(a,b,w,epsilon)
-    % INITIALIZING VARIABLES
-    %----------------------------------------------
-    % Initialize x to satisfy the while loop
-    x = zeros(size(a,1),1);
-    % Initialize the size of n since we need to go thorough each row
-    n=size(a,1);
-    % These are for cosmetic purposes
-    sum1 = 0;
-    sum2 = 0;
-    % setting the intiial iteration
-    k=1;
+figure(1)
+plot(k,x_k(1,:),k,x_k(2,:))
+figure(2)
+semilogy(k,norm_residual_k)
+```
+<img src="{{ site.baseurl }}/images/numerical_analysis/linear_methods/square_root_approximation/approximation_vs_error.png">
+#### broydens method FUNCTION
 
-    % The norm is used to determine whether or not the matrix is within a
-    % the desired error tolerance (You can think of it as a sort of
-    % distance formula)
-    while norm(a*x(:,k)-b)>epsilon
-        % goes through each row
-        for i=1:n
+##### This function has 4 inputs:
+1. x: an [n x 1] initial guess
+2. f: an [n x m] system of equations that we wish to solve for roots of
+3. jf: the Jacobian of f, whos dimensions are determined by [# of variables x # of equations]
+4. epsilon: the error tolerance we are willing to accept
 
-            % The first summation
-            for j = 1:i-1
-                sum1=sum1+a(i,j).*x(j,k+1);
-            end
+##### This function has 3 outputs:
+1. x: A [ n x k], matrix holding up to the kth fixed point approximation
+2. k: the iteration number of the Method
+3. norm_residual: the norm of the residual of the function which we find by plugging the vector into the function
 
-            % The second summation
-            for l=i+1:n
-                sum2=sum2+a(i,l).*x(l,k);
-            end
-
-            % The iterative approximation formula
-            x(i,k+1)=(1-w).*x(i,k)+(w/a(i,i))*(b(i,1)-sum1-sum2);
-
-            % resets the sums
-            sum1=0;
-            sum2=0;
-        end
-
-        %increases the index of k+1
-        k=k+1;
+```matlab
+while norm_residual(1,k)>epsilon
+    if k > 1
+       y = f(x(:,k)) - f(x(:,k-1));
+       d = x(:,k) - x(:,k-1);
+       top = (d - [inv_a(:,:,k-1)]*y)*d'*[inv_a(:,:,k-1)];
+       bottom = d'*[inv_a(:,:,k-1)]*y;
+       inv_a(:,:,k) = [inv_a(:,:,k-1)]+(top)/(bottom);
     end
-
+    v(:,k)=-1*[inv_a(:,:,k)]*f(x(:,k));
+    x(:,k+1) = x(:,k)+v(:,k);
+    residual(:,k+1) = f(x(:,k+1));
+    k=k+1;
+    norm_residual(1,k) = norm(residual(:,k));
+end
+k=[1:k];
 end
 ```
 ##### Function Output
 ```matlab
->> successiveoverrelaxation
-  Columns 1 through 15
+x_k =
 
-           0           0   1.0125000   1.5491250   0.6418238   1.0711814   1.0252382   0.9918509   0.9872134   1.0115144   0.9965633   0.9995795   1.0004215   1.0002458   0.9996554
-           0  -1.3500000  -2.7405000  -1.8885150  -1.8561244  -2.0811052  -2.0059600  -1.9775186  -2.0068281  -2.0030940  -1.9971482  -2.0002816  -2.0006087  -1.9997044  -1.9999572
-           0   3.9150000   3.2089500   2.7951884   2.9729178   3.0865357   2.9620960   2.9987187   3.0067861   2.9993916   2.9977376   3.0013847   2.9998555   2.9998062   3.0000584
+  Columns 1 through 9
 
-  Columns 16 through 26
+   1.000000000000000   1.500000000000000   1.250000000000000   1.166666666666667   1.100000000000000   1.062499999999998   1.038461538461537   1.023809523809526   1.014705882352947
+                   0   0.500000000000000   0.750000000000000   0.833333333333333   0.900000000000001   0.937500000000002   0.961538461538464   0.976190476190474   0.985294117647053
+   1.000000000000000   1.000000000000000   1.000000000000000   1.000000000000000   1.000000000000000   1.000000000000000   1.000000000000000   1.000000000000000   1.000000000000000
 
-   1.0001402   0.9999972   0.9999845   0.9999971   1.0000095   0.9999949   1.0000007   1.0000005   0.9999999   0.9999998   1.0000001
-  -2.0000896  -1.9999775  -1.9999859  -2.0000107  -1.9999995  -1.9999975  -2.0000010  -2.0000002  -1.9999996  -2.0000000  -2.0000000
-   3.0000515   2.9999540   3.0000103   3.0000045   2.9999974   2.9999990   3.0000014   2.9999995   3.0000000   3.0000000   3.0000000
+  Columns 10 through 16
 
+   1.009090909090918   1.005617977528093   1.003472222222229   1.002145922746806   1.001326259946987   1.000819672131199   1.000506585613172
+   0.990909090909082   0.994382022471907   0.996527777777771   0.997854077253194   0.998673740053013   0.999180327868800   0.999493414386828
+   1.000000000000000   1.000000000000000   1.000000000000000   1.000000000000000   1.000000000000000   1.000000000000000   1.000000000000000
 
 ```

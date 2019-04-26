@@ -1,6 +1,6 @@
 ---
 title: "Successive Over Relaxation"
-date: 2018-02-08
+date: 2018-02-09
 #tags: [post]
 header:
   #image:
@@ -67,9 +67,9 @@ This method stores the two outputs:
 [x_k]=SOR(a,b,w,epsilon);
 ```
 
-#### Gauss Elimination FUNCTION
+#### successive over relaxation FUNCTION
 
-##### This function has 1 input:
+##### This function has 4 inputs:
 1. The initial matrix A [n x n]
 2. The solution vector b [n x 1]
 3. The weight factor (scalar)
